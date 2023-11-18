@@ -1,10 +1,10 @@
 package com.example.calculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -54,5 +54,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         MaterialButton button=(MaterialButton) view;
         String buttonText = button.getText().toString();
+        String dataToCalculate = solutionTv.getText().toString();
+
+        if(buttonText.equals("AC")){
+            solutionTv.setText("");
+            resultTv.setText("0");
+            return;
+        }
+
+        if(buttonText.equals("=")){
+            solutionTv.setText(resultTv.getText());
+            return;
+        }
+
+        if(buttonText.equals("C")){
+            dataToCalculate = dataToCalculate.substring(0,dataToCalculate.length()-1);
+        }else{
+            dataToCalculate=dataToCalculate+buttonText;
+        }
+
+
+
+        solutionTv.setText(dataToCalculate);
     }
+    
 }
